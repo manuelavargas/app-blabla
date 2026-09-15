@@ -450,7 +450,7 @@ export default function App() {
         <View style={styles.avatar} />
         <Text style={styles.nome}>Manu</Text>
         <Text>@usuario</Text>
-      </View>
+      </View>	
 
       <View style={styles.estatisticas}>
         <Text>Posts: 120</Text>
