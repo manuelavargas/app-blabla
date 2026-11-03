@@ -1,0 +1,1368 @@
+// 1
+
+// import React from 'react';
+// import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+
+// const COLORS = {
+//   fundo: '#eeeeee',
+//   branco: '#ffffff',
+//   azul: '#007bff',
+// };
+
+// const SPACING = {
+//   pequeno: 10,
+//   medio: 20,
+// };
+
+// function ProductCard() {
+//   return (
+//     <View style={styles.card}>
+//       <View style={styles.imagem}>
+//         <Text style={{ fontSize: 50 }}>🎧</Text>
+//       </View>
+
+//       <Text style={styles.nome}>Fone de Ouvido</Text>
+//       <Text style={styles.preco}>R$ 99,90</Text>
+
+//       <TouchableOpacity
+//         style={styles.botao}
+//         activeOpacity={0.7}
+//         onPress={() => Alert.alert('Compra', 'Produto comprado!')}
+//       >
+//         <Text style={{ color: 'white' }}>Comprar</Text>
+//       </TouchableOpacity>
+//     </View>
+//   );
+// }
+
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+//       <ProductCard />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     backgroundColor: COLORS.fundo,
+//     padding: SPACING.medio,
+//   },
+//   card: {
+//     backgroundColor: COLORS.branco,
+//     padding: SPACING.medio,
+//     borderRadius: 12,
+//     alignItems: 'center',
+//     elevation: 5,
+//     shadowColor: '#000',
+//     shadowOffset: { width: 0, height: 3 },
+//     shadowOpacity: 0.2,
+//     shadowRadius: 5,
+//   },
+//   imagem: {
+//     backgroundColor: '#ddd',
+//     padding: 30,
+//     borderRadius: 10,
+//   },
+//   nome: {
+//     fontSize: 20,
+//     fontWeight: 'bold',
+//     marginTop: SPACING.pequeno,
+//   },
+//   preco: {
+//     fontSize: 18,
+//     margin: SPACING.pequeno,
+//   },
+//   botao: {
+//     backgroundColor: COLORS.azul,
+//     padding: SPACING.pequeno,
+//     borderRadius: 8,
+//   },
+// });
+
+//2
+
+// import React from 'react';
+// import { View, Text, StyleSheet } from 'react-native';
+
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+//       <View style={styles.header}>
+//         <Text style={styles.title}>Minha Loja</Text>
+//         <View style={styles.badge}>
+//           <Text>3</Text>
+//         </View>
+//       </View>
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//   },
+//   header: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-between',
+//     alignItems: 'center',
+//     padding: 16,
+//   },
+//   title: {
+//     fontSize: 22,
+//     fontWeight: '700',
+//     color: '#1e293b',
+//   },
+//   badge: {
+//     borderRadius: 50,
+//     paddingHorizontal: 10,
+//     paddingVertical: 4,
+//     backgroundColor: '#00C2B2',
+//   },
+// });
+
+// 3
+
+// import React from 'react';
+// import { View, StyleSheet } from 'react-native';
+
+// const styles = StyleSheet.create({
+//   box: {
+//     width: 100,
+//     height: 100,
+//     backgroundColor: 'blue',
+//   },
+// });
+
+// export default function App() {
+//   return (
+//     <View style={styles.box} />
+//   );
+// }
+
+Perguntas:
+1. o StyleSheet.create() está dentro do componente, fazendo os estilos serem recriados a cada renderização.
+2. se o componente renderizar 50 vezes, os estilos serão criados 50 vezes.
+3. colocar o StyleSheet.create() fora da função App().
+4. são úteis quando precisamos mudar uma cor ou outra propriedade dependendo de alguma condição.
+
+// 4
+
+// import React from 'react';
+// import { View, Text, StyleSheet } from 'react-native';
+
+// const itens = [
+//   { id: 1, nome: 'Celular', emoji: '📱' },
+//   { id: 2, nome: 'Notebook', emoji: '💻' },
+//   { id: 3, nome: 'Fone', emoji: '🎧' },
+//   { id: 4, nome: 'Relógio', emoji: '⌚' },
+//   { id: 5, nome: 'Mouse', emoji: '🖱️' },
+//   { id: 6, nome: 'Teclado', emoji: '⌨️' },
+// ];
+
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+//       <View style={styles.grade}>
+//         {itens.map(item => (
+//           <View key={item.id} style={styles.card}>
+//             <Text style={{ fontSize: 30 }}>{item.emoji}</Text>
+//             <Text>{item.nome}</Text>
+//           </View>
+//         ))}
+//       </View>
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     backgroundColor: '#fff',
+//   },
+//   grade: {
+//     flexDirection: 'row',
+//     flexWrap: 'wrap',
+//     gap: 8,
+//     paddingHorizontal: 16,
+//   },
+//   card: {
+//     width: '31%',
+//     minHeight: 80,
+//     backgroundColor: '#ddd',
+//     borderRadius: 8,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+// });
+
+
+// 5
+
+// import React from 'react';
+// import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+// const Stack = createNativeStackNavigator();
+
+// const filmes = [
+//   {
+//     id: '1',
+//     titulo: 'Coraline',
+//     ano: 2009,
+//     genero: 'Fantasia e Terror',
+//     sinopse: 'Coraline encontra uma porta secreta que leva para um mundo misterioso e perigoso.'
+//   },
+//   {
+//     id: '2',
+//     titulo: 'A Noiva Cadáver',
+//     ano: 2005,
+//     genero: 'Fantasia e Romance',
+//     sinopse: 'Victor acaba se casando por acidente com uma noiva do mundo dos mortos.'
+//   },
+//   {
+//     id: '3',
+//     titulo: 'Kubo e as Cordas Mágicas',
+//     ano: 2016,
+//     genero: 'Fantasia e Aventura',
+//     sinopse: 'Kubo parte em uma aventura para encontrar uma armadura mágica e enfrentar espíritos perigosos.'
+//   },
+//   {
+//     id: '4',
+//     titulo: 'A Fuga das Galinhas',
+//     ano: 2000,
+//     genero: 'Animação e Comédia',
+//     sinopse: 'Um grupo de galinhas planeja fugir de uma fazenda antes que seja tarde demais.'
+//   },
+//   {
+//     id: '5',
+//     titulo: 'ParaNorman',
+//     ano: 2012,
+//     genero: 'Animação e Terror',
+//     sinopse: 'Norman consegue conversar com fantasmas e precisa salvar sua cidade de uma maldição.'
+//   }
+// ];
+
+// function HomeScreen({ navigation }) {
+//   return (
+//     <View style={styles.container}>
+//       <FlatList
+//         data={filmes}
+//         keyExtractor={(item) => item.id}
+//         renderItem={({ item }) => (
+//           <View style={styles.card}>
+//             <Text style={styles.titulo}>{item.titulo}</Text>
+//             <Text>Ano: {item.ano}</Text>
+//             <Text>Gênero: {item.genero}</Text>
+
+//             <Button
+//               title="Ver Detalhes"
+//               onPress={() =>
+//                 navigation.navigate('Detalhes', {
+//                   filme: item
+//                 })
+//               }
+//             />
+//           </View>
+//         )}
+//       />
+//     </View>
+//   );
+// }
+
+// function DetailScreen({ navigation, route }) {
+//   const filme = route.params.filme;
+
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.titulo}>{filme.titulo}</Text>
+//       <Text>Ano: {filme.ano}</Text>
+//       <Text>Sinopse: {filme.sinopse}</Text>
+
+//       <View style={{ marginTop: 20 }}>
+//         <Button
+//           title="Ver Favoritos"
+//           onPress={() => navigation.navigate('Favoritos')}
+//         />
+//       </View>
+//     </View>
+//   );
+// }
+
+// function FavoriteScreen() {
+//   return (
+//     <View style={styles.container}>
+//       <Text>Nenhum favorito ainda</Text>
+//     </View>
+//   );
+// }
+
+// export default function App() {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator
+//         screenOptions={{
+//           headerStyle: {
+//             backgroundColor: '#0F1B2D'
+//           },
+//           headerTintColor: '#fff'
+//         }}
+//       >
+//         <Stack.Screen
+//           name="Inicio"
+//           component={HomeScreen}
+//           options={{ title: 'Filmes' }}
+//         />
+
+//         <Stack.Screen
+//           name="Detalhes"
+//           component={DetailScreen}
+//           options={({ route }) => ({
+//             title: route.params.filme.titulo
+//           })}
+//         />
+
+//         <Stack.Screen
+//           name="Favoritos"
+//           component={FavoriteScreen}
+//         />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     padding: 15,
+//     backgroundColor: '#fff'
+//   },
+//   card: {
+//     padding: 15,
+//     marginBottom: 10,
+//     backgroundColor: '#eee',
+//     borderRadius: 5,
+//     gap: 5
+//   },
+//   titulo: {
+//     fontSize: 20,
+//     fontWeight: 'bold',
+//     marginBottom: 10
+//   }
+// });
+
+
+import React from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
+
+function HomeScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.titulo}>Tela Inicial</Text>
+
+      <Button
+        title="Ir para Detalhes"
+        onPress={() => navigation.navigate('Detalhes')}
+      />
+    </View>
+  );
+}
+
+function DetailScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.titulo}>Tela de Detalhes</Text>
+
+      <Button
+        title="Navigate"
+        onPress={() => navigation.navigate('Detalhes')}
+      />
+
+      <Button
+        title="Push"
+        onPress={() => navigation.push('Detalhes')}
+      />
+
+      <Button
+        title="GoBack"
+        onPress={() => navigation.goBack()}
+      />
+
+      <Button
+        title="PopToTop"
+        onPress={() => navigation.popToTop()}
+      />
+
+      <Button
+        title="Replace"
+        onPress={() => navigation.replace('OutraTela')}
+      />
+    </View>
+  );
+}
+
+function OutraTela() {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.titulo}>Outra Tela</Text>
+    </View>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Inicio"
+          component={HomeScreen}
+        />
+
+        <Stack.Screen
+          name="Detalhes"
+          component={DetailScreen}
+        />
+
+        <Stack.Screen
+          name="OutraTela"
+          component={OutraTela}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+    gap: 15,
+    backgroundColor: '#fff'
+  },
+  titulo: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center'
+  }
+});
+
+Pergunta: O navigate() vai para outra tela, permitindo voltar para a anterior. Já o replace() substitui a tela atual por outra, sem permitir voltar para a tela substituída.
+
+// 7
+
+// import React from 'react';
+// import { View, Text, Button, StyleSheet } from 'react-native';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+// const Stack = createNativeStackNavigator();
+
+// function LoginScreen({ navigation }) {
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.titulo}>Login</Text>
+
+//       <Button
+//         title="Entrar"
+//         onPress={() => navigation.replace('Home')}
+//       />
+//     </View>
+//   );
+// }
+
+// function HomeScreen({ navigation }) {
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.titulo}>Bem-vindo!</Text>
+
+//       <Button
+//         title="Sair"
+//         onPress={() => navigation.replace('Login')}
+//       />
+//     </View>
+//   );
+// }
+
+// export default function App() {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator initialRouteName="Login">
+//         <Stack.Screen name="Login" component={LoginScreen} />
+//         <Stack.Screen name="Home" component={HomeScreen} />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#fff',
+//     gap: 20
+//   },
+//   titulo: {
+//     fontSize: 24,
+//     fontWeight: 'bold'
+//   }
+// });
+
+1. O usuário consegue voltar para a tela de login depois de entrar.
+
+2. Usando replace() no lugar de navigate().
+
+3. Porque o replace() substitui a tela de login, impedindo que o usuário volte para ela.
+
+// 8
+
+// import React from 'react';
+// import { View, Text, Button, StyleSheet } from 'react-native';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { Ionicons } from '@expo/vector-icons';
+
+// const Stack = createNativeStackNavigator();
+// const Tab = createBottomTabNavigator();
+
+// function FeedScreen({ navigation }) {
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.titulo}>Feed</Text>
+
+//       <Text>Publicação 1</Text>
+//       <Button
+//         title="Ver publicação 1"
+//         onPress={() => navigation.navigate('Detalhes', {
+//           titulo: 'Publicação 1'
+//         })}
+//       />
+
+//       <Text>Publicação 2</Text>
+//       <Button
+//         title="Ver publicação 2"
+//         onPress={() => navigation.navigate('Detalhes', {
+//           titulo: 'Publicação 2'
+//         })}
+//       />
+//     </View>
+//   );
+// }
+
+// function DetalhesScreen({ route }) {
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.titulo}>{route.params.titulo}</Text>
+//       <Text>Detalhes da publicação.</Text>
+//     </View>
+//   );
+// }
+
+// function PerfilScreen() {
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.titulo}>Meu Perfil</Text>
+//       <Text>Bem-vindo ao seu perfil!</Text>
+//     </View>
+//   );
+// }
+
+// function FeedStack() {
+//   return (
+//     <Stack.Navigator>
+//       <Stack.Screen
+//         name="FeedInicio"
+//         component={FeedScreen}
+//         options={{ title: 'Feed' }}
+//       />
+
+//       <Stack.Screen
+//         name="Detalhes"
+//         component={DetalhesScreen}
+//         options={({ route }) => ({
+//           title: route.params.titulo
+//         })}
+//       />
+//     </Stack.Navigator>
+//   );
+// }
+
+// export default function App() {
+//   return (
+//     <NavigationContainer>
+//       <Tab.Navigator
+//         screenOptions={({ route }) => ({
+//           tabBarIcon: ({ focused, color, size }) => {
+//             let icone = route.name === 'Feed'
+//               ? (focused ? 'home' : 'home-outline')
+//               : (focused ? 'person' : 'person-outline');
+
+//             return (
+//               <Ionicons
+//                 name={icone}
+//                 size={size}
+//                 color={color}
+//               />
+//             );
+//           },
+//           tabBarActiveTintColor: 'blue',
+//           tabBarInactiveTintColor: 'gray',
+//           headerShown: false
+//         })}
+//       >
+//         <Tab.Screen
+//           name="Feed"
+//           component={FeedStack}
+//           options={{ popToTopOnBlur: false }}
+//         />
+
+//         <Tab.Screen
+//           name="Perfil"
+//           component={PerfilScreen}
+//         />
+//       </Tab.Navigator>
+//     </NavigationContainer>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#fff',
+//     gap: 15,
+//     padding: 20
+//   },
+//   titulo: {
+//     fontSize: 24,
+//     fontWeight: 'bold'
+//   }
+// });
+
+// 9
+
+// import React, { useState } from 'react';
+// import {
+//   View,
+//   Text,
+//   TextInput,
+//   Button,
+//   FlatList,
+//   TouchableOpacity,
+//   StyleSheet
+// } from 'react-native';
+
+// export default function App() {
+//   const [tarefas, setTarefas] = useState([]);
+//   const [texto, setTexto] = useState('');
+
+//   function adicionarTarefa() {
+//     if (texto.trim() === '') return;
+
+//     const novaTarefa = {
+//       id: Date.now().toString(),
+//       nome: texto.trim(),
+//       concluida: false
+//     };
+
+//     setTarefas([...tarefas, novaTarefa]);
+//     setTexto('');
+//   }
+
+//   function marcarTarefa(id) {
+//     setTarefas(tarefas.map(tarefa =>
+//       tarefa.id === id
+//         ? { ...tarefa, concluida: !tarefa.concluida }
+//         : tarefa
+//     ));
+//   }
+
+//   function excluirTarefa(id) {
+//     setTarefas(tarefas.filter(tarefa => tarefa.id !== id));
+//   }
+
+//   const pendentes = tarefas.filter(tarefa => !tarefa.concluida).length;
+
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.titulo}>Minhas Tarefas</Text>
+
+//       <TextInput
+//         style={styles.input}
+//         placeholder="Digite uma tarefa"
+//         value={texto}
+//         onChangeText={setTexto}
+//       />
+
+//       <Button
+//         title="Adicionar"
+//         onPress={adicionarTarefa}
+//       />
+
+//       <Text style={styles.contador}>
+//         Tarefas pendentes: {pendentes}
+//       </Text>
+
+//       <FlatList
+//         data={tarefas}
+//         keyExtractor={item => item.id}
+//         renderItem={({ item }) => (
+//           <View style={styles.tarefa}>
+//             <TouchableOpacity
+//               style={{ flex: 1 }}
+//               onPress={() => marcarTarefa(item.id)}
+//             >
+//               <Text style={{
+//                 textDecorationLine: item.concluida ? 'line-through' : 'none'
+//               }}>
+//                 {item.concluida ? '☑' : '☐'} {item.nome}
+//               </Text>
+//             </TouchableOpacity>
+
+//             <Button
+//               title="Excluir"
+//               color="red"
+//               onPress={() => excluirTarefa(item.id)}
+//             />
+//           </View>
+//         )}
+//       />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     padding: 20,
+//     backgroundColor: '#fff'
+//   },
+//   titulo: {
+//     fontSize: 24,
+//     fontWeight: 'bold',
+//     marginBottom: 20
+//   },
+//   input: {
+//     borderWidth: 1,
+//     borderColor: '#aaa',
+//     padding: 10,
+//     marginBottom: 10,
+//     borderRadius: 5
+//   },
+//   contador: {
+//     fontSize: 16,
+//     marginVertical: 20
+//   },
+//   tarefa: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//     padding: 10,
+//     borderBottomWidth: 1,
+//     borderColor: '#ddd'
+//   }
+// });
+
+// 10
+
+// import React, { useState, useEffect } from 'react';
+// import {
+//   View,
+//   Text,
+//   Image,
+//   ActivityIndicator,
+//   StyleSheet
+// } from 'react-native';
+
+// export default function App() {
+//   const [usuario, setUsuario] = useState(null);
+//   const [carregando, setCarregando] = useState(true);
+//   const [erro, setErro] = useState('');
+
+//   useEffect(() => {
+//     const controller = new AbortController();
+
+//     async function buscarUsuario() {
+//       try {
+//         const resposta = await fetch(
+//           'https://api.github.com/users/octocat',
+//           { signal: controller.signal }
+//         );
+
+//         if (!resposta.ok) {
+//           throw new Error('Erro ao buscar usuário');
+//         }
+
+//         const dados = await resposta.json();
+//         setUsuario(dados);
+//       } catch (error) {
+//         if (error.name !== 'AbortError') {
+//           setErro('Não foi possível carregar o usuário.');
+//         }
+//       } finally {
+//         if (!controller.signal.aborted) {
+//           setCarregando(false);
+//         }
+//       }
+//     }
+
+//     buscarUsuario();
+
+//     return () => controller.abort();
+//   }, []);
+
+//   if (carregando) {
+//     return (
+//       <View style={styles.container}>
+//         <ActivityIndicator size="large" color="blue" />
+//         <Text>Carregando...</Text>
+//       </View>
+//     );
+//   }
+
+//   if (erro) {
+//     return (
+//       <View style={styles.container}>
+//         <Text>{erro}</Text>
+//       </View>
+//     );
+//   }
+
+//   return (
+//     <View style={styles.container}>
+//       <Image
+//         source={{ uri: usuario.avatar_url }}
+//         style={styles.foto}
+//       />
+
+//       <Text style={styles.titulo}>{usuario.login}</Text>
+
+//       <Text>Nome: {usuario.name || 'Não informado'}</Text>
+
+//       <Text>Seguidores: {usuario.followers}</Text>
+
+//       <Text>Repositórios: {usuario.public_repos}</Text>
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#fff',
+//     gap: 15,
+//     padding: 20
+//   },
+//   titulo: {
+//     fontSize: 24,
+//     fontWeight: 'bold'
+//   },
+//   foto: {
+//     width: 120,
+//     height: 120,
+//     borderRadius: 60
+//   }
+// });
+
+Pergunta extra: Usando AbortController e chamando controller.abort() no retorno do useEffect, para cancelar o fetch quando o componente desmontar.
+
+// 11
+
+// import React, { useState, useEffect } from 'react';
+// import { View, Text, StyleSheet } from 'react-native';
+
+// export default function App() {
+//   const [dados, setDados] = useState([]);
+
+//   useEffect(() => {
+//     setDados(['Coraline', 'A Noiva Cadáver', 'ParaNorman']);
+//   }, []);
+
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.titulo}>Lista de Filmes</Text>
+
+//       {dados.map((filme, index) => (
+//         <Text key={index}>{filme}</Text>
+//       ))}
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#fff',
+//     gap: 10
+//   },
+//   titulo: {
+//     fontSize: 24,
+//     fontWeight: 'bold'
+//   }
+// });
+
+1. O useEffect executa, atualiza o data, o componente renderiza novamente e o useEffect executa de novo, criando um loop infinito.
+
+2. O React compara a referência, não o conteúdo do array.
+
+3. Trocar [data] por [] nas dependências do useEffect, para executar apenas na montagem.
+
+4. Quando queremos executar alguma ação sempre que data mudar, como atualizar uma informação na tela quando uma lista for modificada.
+
+// 12
+
+// import React, { useState, useEffect } from 'react';
+// import { View, Text, Button, StyleSheet } from 'react-native';
+
+// export default function App() {
+//   const [contador, setContador] = useState(0);
+//   const [mensagem, setMensagem] = useState('');
+
+//   function aumentarTres() {
+//     setContador(valor => valor + 1);
+//     setContador(valor => valor + 1);
+//     setContador(valor => valor + 1);
+//   }
+
+//   useEffect(() => {
+//     async function carregarMensagem() {
+//       const resultado = await Promise.resolve('Dados carregados!');
+//       setMensagem(resultado);
+//     }
+
+//     carregarMensagem();
+//   }, []);
+
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.titulo}>Exercício 12</Text>
+
+//       <Text>Contador: {contador}</Text>
+
+//       <Button
+//         title="Aumentar 3"
+//         onPress={aumentarTres}
+//       />
+
+//       <Text>{mensagem}</Text>
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#fff',
+//     gap: 20
+//   },
+//   titulo: {
+//     fontSize: 24,
+//     fontWeight: 'bold'
+//   }
+// });
+
+1. O contador aumenta apenas uma vez porque as três atualizações usam o mesmo valor antigo.
+
+2. Para aumentar três vezes, usamos setContador(valor => valor + 1) em cada atualização.
+
+3. Não devemos colocar async diretamente na função do useEffect, porque ela precisa retornar uma função de limpeza ou nada.
+
+4. A correção é criar uma função async dentro do useEffect e chamá-la.
+
+// 13
+
+// import React, { createContext, useContext, useState } from 'react';
+// import { View, Text, Button, StyleSheet } from 'react-native';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+// const TemaContext = createContext();
+// const Stack = createNativeStackNavigator();
+
+// function TemaProvider({ children }) {
+//   const [escuro, setEscuro] = useState(false);
+
+//   function trocarTema() {
+//     setEscuro(!escuro);
+//   }
+
+//   return (
+//     <TemaContext.Provider value={{ escuro, trocarTema }}>
+//       {children}
+//     </TemaContext.Provider>
+//   );
+// }
+
+// function useTema() {
+//   return useContext(TemaContext);
+// }
+
+// function HomeScreen({ navigation }) {
+//   const { escuro, trocarTema } = useTema();
+
+//   return (
+//     <View style={[
+//       styles.container,
+//       { backgroundColor: escuro ? '#222' : '#fff' }
+//     ]}>
+//       <Text style={[
+//         styles.titulo,
+//         { color: escuro ? '#fff' : '#000' }
+//       ]}>
+//         Tela Inicial
+//       </Text>
+
+//       <Text style={{ color: escuro ? '#fff' : '#000' }}>
+//         Tema: {escuro ? 'Escuro' : 'Claro'}
+//       </Text>
+
+//       <Button
+//         title="Trocar Tema"
+//         onPress={trocarTema}
+//       />
+
+//       <Button
+//         title="Ir para Segunda Tela"
+//         onPress={() => navigation.navigate('SegundaTela')}
+//       />
+//     </View>
+//   );
+// }
+
+// function SegundaTela({ navigation }) {
+//   const { escuro, trocarTema } = useTema();
+
+//   return (
+//     <View style={[
+//       styles.container,
+//       { backgroundColor: escuro ? '#222' : '#fff' }
+//     ]}>
+//       <Text style={[
+//         styles.titulo,
+//         { color: escuro ? '#fff' : '#000' }
+//       ]}>
+//         Segunda Tela
+//       </Text>
+
+//       <Button
+//         title="Trocar Tema"
+//         onPress={trocarTema}
+//       />
+
+//       <Button
+//         title="Voltar"
+//         onPress={() => navigation.goBack()}
+//       />
+//     </View>
+//   );
+// }
+
+// export default function App() {
+//   return (
+//     <TemaProvider>
+//       <NavigationContainer>
+//         <Stack.Navigator>
+//           <Stack.Screen
+//             name="Home"
+//             component={HomeScreen}
+//             options={{ title: 'Início' }}
+//           />
+
+//           <Stack.Screen
+//             name="SegundaTela"
+//             component={SegundaTela}
+//             options={{ title: 'Segunda Tela' }}
+//           />
+//         </Stack.Navigator>
+//       </NavigationContainer>
+//     </TemaProvider>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     gap: 20
+//   },
+//   titulo: {
+//     fontSize: 24,
+//     fontWeight: 'bold'
+//   }
+// });
+
+
+// 14
+
+// import React, { useState, useMemo, useCallback, memo } from 'react';
+// import { View, Text, Button, StyleSheet } from 'react-native';
+
+// const Botao = memo(function Botao({ aumentar }) {
+//   console.log('Botão renderizado');
+
+//   return (
+//     <Button title="Aumentar contador" onPress={aumentar} />
+//   );
+// });
+
+// export default function App() {
+//   const [contador, setContador] = useState(0);
+//   const [numero, setNumero] = useState(5);
+
+//   const resultado = useMemo(() => {
+//     console.log('Calculando resultado');
+//     return numero * 10;
+//   }, [numero]);
+
+//   const aumentar = useCallback(() => {
+//     setContador(valor => valor + 1);
+//   }, []);
+
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.titulo}>Exercício 14</Text>
+
+//       <Text>Contador: {contador}</Text>
+
+//       <Botao aumentar={aumentar} />
+
+//       <Text>Número: {numero}</Text>
+//       <Text>Resultado: {resultado}</Text>
+
+//       <Button
+//         title="Mudar número"
+//         onPress={() => setNumero(numero + 1)}
+//       />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#fff',
+//     gap: 20
+//   },
+//   titulo: {
+//     fontSize: 24,
+//     fontWeight: 'bold'
+//   }
+// });
+
+
+// 15
+
+// import React, { useState, useEffect } from 'react';
+// import {
+//   View,
+//   Text,
+//   TextInput,
+//   Button,
+//   ActivityIndicator,
+//   StyleSheet
+// } from 'react-native';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// function useAsyncStorage(chave, valorInicial) {
+//   const [valor, setValor] = useState(valorInicial);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     async function carregar() {
+//       try {
+//         const dados = await AsyncStorage.getItem(chave);
+
+//         if (dados !== null) {
+//           setValor(JSON.parse(dados));
+//         }
+//       } catch (erro) {
+//         console.log('Erro ao carregar:', erro);
+//       } finally {
+//         setLoading(false);
+//       }
+//     }
+
+//     carregar();
+//   }, [chave]);
+
+//   async function salvar(novoValor) {
+//     try {
+//       await AsyncStorage.setItem(
+//         chave,
+//         JSON.stringify(novoValor)
+//       );
+//       setValor(novoValor);
+//     } catch (erro) {
+//       console.log('Erro ao salvar:', erro);
+//     }
+//   }
+
+//   async function limpar() {
+//     try {
+//       await AsyncStorage.removeItem(chave);
+//       setValor(valorInicial);
+//     } catch (erro) {
+//       console.log('Erro ao limpar:', erro);
+//     }
+//   }
+
+//   return { valor, loading, salvar, limpar };
+// }
+
+// export default function App() {
+//   const [texto, setTexto] = useState('');
+
+//   const {
+//     valor,
+//     loading,
+//     salvar,
+//     limpar
+//   } = useAsyncStorage('nome', '');
+
+//   if (loading) {
+//     return (
+//       <View style={styles.container}>
+//         <ActivityIndicator size="large" />
+//         <Text>Carregando...</Text>
+//       </View>
+//     );
+//   }
+
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.titulo}>Exercício 15</Text>
+
+//       <Text>Nome salvo: {valor}</Text>
+
+//       <TextInput
+//         style={styles.input}
+//         placeholder="Digite seu nome"
+//         value={texto}
+//         onChangeText={setTexto}
+//       />
+
+//       <Button
+//         title="Salvar"
+//         onPress={() => {
+//           salvar(texto);
+//           setTexto('');
+//         }}
+//       />
+
+//       <Button
+//         title="Limpar"
+//         color="red"
+//         onPress={limpar}
+//       />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     padding: 20,
+//     gap: 15,
+//     backgroundColor: '#fff'
+//   },
+//   titulo: {
+//     fontSize: 24,
+//     fontWeight: 'bold'
+//   },
+//   input: {
+//     borderWidth: 1,
+//     borderColor: '#aaa',
+//     padding: 10,
+//     width: '100%',
+//     borderRadius: 5
+//   }
+// });
+
+
+// 16
+
+// import React, { useState, useCallback, memo } from 'react';
+// import { View, Text, Button, StyleSheet } from 'react-native';
+
+// const Botao = memo(function Botao({ aoClicar, titulo }) {
+//   console.log(titulo + ' renderizado');
+
+//   return (
+//     <Button title={titulo} onPress={aoClicar} />
+//   );
+// });
+
+// export default function App() {
+//   const [contador, setContador] = useState(0);
+//   const [texto, setTexto] = useState(0);
+
+//   const aumentar = useCallback(() => {
+//     setContador(valor => valor + 1);
+//   }, []);
+
+//   const aumentarSemCallback = () => {
+//     setContador(valor => valor + 1);
+//   };
+
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.titulo}>Exercício 16</Text>
+
+//       <Text>Contador: {contador}</Text>
+
+//       <Botao
+//         titulo="Com useCallback"
+//         aoClicar={aumentar}
+//       />
+
+//       <Botao
+//         titulo="Sem useCallback"
+//         aoClicar={aumentarSemCallback}
+//       />
+
+//       <Text>Outro valor: {texto}</Text>
+
+//       <Button
+//         title="Mudar outro valor"
+//         onPress={() => setTexto(valor => valor + 1)}
+//       />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#fff',
+//     gap: 20
+//   },
+//   titulo: {
+//     fontSize: 24,
+//     fontWeight: 'bold'
+//   }
+// });
+
