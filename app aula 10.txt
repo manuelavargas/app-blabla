@@ -1,0 +1,364 @@
+// 1
+
+// import React, { useState } from 'react';
+// import { View, Text, Button } from 'react-native';
+
+// export default function App() {
+//   const [numero, setNumero] = useState(0);
+
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Número: {numero}</Text>
+//       <Button title="+" onPress={() => setNumero(numero + 1)} />
+//       <Button title="-" onPress={() => setNumero(numero - 1)} />
+//     </View>
+//   );
+// }
+
+// 2
+
+// import React, { useState } from 'react';
+// import { View, Text, TextInput } from 'react-native';
+
+// export default function App() {
+//   const [nome, setNome] = useState('');
+
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <TextInput
+//         placeholder="Digite seu nome"
+//         value={nome}
+//         onChangeText={setNome}
+//         style={{ borderWidth: 1, padding: 10, width: 220 }}
+//       />
+//       <Text>Olá, {nome}!</Text>
+//     </View>
+//   );
+// }
+
+// 3
+
+// import React, { useState } from 'react';
+// import { View, Text, Button } from 'react-native';
+
+// export default function App() {
+//   const [visivel, setVisivel] = useState(false);
+
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Button
+//         title="Mostrar / Esconder"
+//         onPress={() => setVisivel(!visivel)}
+//       />
+//       {visivel && <Text>Bobão!</Text>}
+//     </View>
+//   );
+// }
+
+// 4
+
+// import React, { useState } from 'react';
+// import { View, Text, TextInput, Button, FlatList } from 'react-native';
+
+// export default function App() {
+//   const [tarefas, setTarefas] = useState([]);
+//   const [novaTarefa, setNovaTarefa] = useState('');
+
+//   function adicionar() {
+//     if (novaTarefa.trim() === '') return;
+//     setTarefas([...tarefas, novaTarefa]);
+//     setNovaTarefa('');
+//   }
+
+//   function remover(index) {
+//     setTarefas(tarefas.filter((_, i) => i !== index));
+//   }
+
+//   return (
+//     <View style={{ flex: 1, padding: 20 }}>
+//       <View style={{ alignItems: 'center', marginTop: 40 }}>
+//         <TextInput
+//           placeholder="Digite uma tarefa"
+//           value={novaTarefa}
+//           onChangeText={setNovaTarefa}
+//           style={{
+//             borderWidth: 1,
+//             padding: 10,
+//             width: 250,
+//             textAlign: 'center'
+//           }}
+//         />
+//         <Button title="Adicionar" onPress={adicionar} />
+//       </View>
+
+//       <FlatList
+//         data={tarefas}
+//         keyExtractor={(_, index) => String(index)}
+//         contentContainerStyle={{ alignItems: 'center', paddingTop: 20 }}
+//         renderItem={({ item, index }) => (
+//           <View style={{ alignItems: 'center', marginBottom: 10 }}>
+//             <Text>{item}</Text>
+//             <Button title="Remover" onPress={() => remover(index)} />
+//           </View>
+//         )}
+//       />
+//     </View>
+//   );
+// }
+
+// 5
+
+// import React, { useState } from 'react';
+// import { View, Text, Button } from 'react-native';
+
+// export default function App() {
+//   const [jogo, setJogo] = useState({ pontos: 0, vidas: 3 });
+
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Pontos: {jogo.pontos}</Text>
+//       <Text>Vidas: {jogo.vidas}</Text>
+
+//       <Button
+//         title="Acertar"
+//         onPress={() => setJogo({ ...jogo, pontos: jogo.pontos + 1 })}
+//       />
+
+//       <Button
+//         title="Errar"
+//         onPress={() => setJogo({
+//           ...jogo,
+//           vidas: Math.max(0, jogo.vidas - 1)
+//         })}
+//       />
+//     </View>
+//   );
+// }
+
+// 6
+
+// import React, { useState, useEffect } from 'react';
+// import { View, Text, Button } from 'react-native';
+
+// function Componente() {
+//   useEffect(() => {
+//     console.log('Componente montado');
+
+//     return () => {
+//       console.log('Componente desmontado');
+//     };
+//   }, []);
+
+//   return <Text>Componente está montado!</Text>;
+// }
+
+// export default function App() {
+//   const [mostrar, setMostrar] = useState(true);
+
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       {mostrar && <Componente />}
+//       <Button
+//         title="Montar / Desmontar"
+//         onPress={() => setMostrar(!mostrar)}
+//       />
+//     </View>
+//   );
+// }
+
+// 7
+
+// import React, { useState, useEffect } from 'react';
+// import { View, Text, Button } from 'react-native';
+
+// export default function App() {
+//   const [segundos, setSegundos] = useState(0);
+//   const [rodando, setRodando] = useState(true);
+
+//   useEffect(() => {
+//     if (!rodando) return;
+
+//     const id = setInterval(() => {
+//       setSegundos(s => s + 1);
+//     }, 1000);
+
+//     return () => clearInterval(id);
+//   }, [rodando]);
+
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Tempo: {segundos}s</Text>
+//       <Button
+//         title={rodando ? 'Pausar' : 'Retomar'}
+//         onPress={() => setRodando(!rodando)}
+//       />
+//     </View>
+//   );
+// }
+
+// 8
+
+// import React, { useState, useEffect } from 'react';
+// import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+
+// export default function App() {
+//   const [dados, setDados] = useState([]);
+//   const [carregando, setCarregando] = useState(true);
+//   const [erro, setErro] = useState(null);
+
+//   useEffect(() => {
+//     fetch('https://jsonplaceholder.typicode.com/users')
+//       .then(res => {
+//         if (!res.ok) throw new Error('Erro ao buscar usuários');
+//         return res.json();
+//       })
+//       .then(setDados)
+//       .catch(e => setErro(e.message))
+//       .finally(() => setCarregando(false));
+//   }, []);
+
+//   return (
+//     <View style={{ flex: 1, padding: 20, justifyContent: 'center' }}>
+//       {carregando ? (
+//         <ActivityIndicator size="large" />
+//       ) : erro ? (
+//         <Text style={{ textAlign: 'center' }}>Erro: {erro}</Text>
+//       ) : (
+//         <FlatList
+//           data={dados}
+//           keyExtractor={item => String(item.id)}
+//           contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
+//           renderItem={({ item }) => (
+//             <Text style={{ textAlign: 'center', margin: 5 }}>
+//               {item.name}
+//             </Text>
+//           )}
+//         />
+//       )}
+//     </View>
+//   );
+// }
+
+// 9
+
+// import React, { useState, useEffect } from 'react';
+// import { View, Text, TextInput, FlatList, ActivityIndicator } from 'react-native';
+
+// export default function App() {
+//   const [texto, setTexto] = useState('');
+//   const [resultados, setResultados] = useState([]);
+//   const [carregando, setCarregando] = useState(false);
+//   const [erro, setErro] = useState('');
+
+//   useEffect(() => {
+//     const controller = new AbortController();
+
+//     const t = setTimeout(async () => {
+//       setCarregando(true);
+//       setErro('');
+
+//       try {
+//         const resposta = await fetch(
+//           'https://jsonplaceholder.typicode.com/users',
+//           { signal: controller.signal }
+//         );
+
+//         if (!resposta.ok) throw new Error('Erro na busca');
+
+//         const usuarios = await resposta.json();
+
+//         const filtrados = usuarios.filter(usuario =>
+//           usuario.name.toLowerCase().includes(texto.toLowerCase())
+//         );
+
+//         setResultados(filtrados);
+//       } catch (e) {
+//         if (e.name !== 'AbortError') {
+//           setErro(e.message);
+//         }
+//       } finally {
+//         if (!controller.signal.aborted) {
+//           setCarregando(false);
+//         }
+//       }
+//     }, 500);
+
+//     return () => {
+//       clearTimeout(t);
+//       controller.abort();
+//     };
+//   }, [texto]);
+
+//   return (
+//     <View style={{ flex: 1, padding: 20, justifyContent: 'center' }}>
+//       <TextInput
+//         placeholder="Buscar usuários"
+//         value={texto}
+//         onChangeText={setTexto}
+//         style={{
+//           borderWidth: 1,
+//           padding: 10,
+//           textAlign: 'center'
+//         }}
+//       />
+
+//       {carregando && <ActivityIndicator />}
+
+//       {erro !== '' && (
+//         <Text style={{ textAlign: 'center' }}>{erro}</Text>
+//       )}
+
+//       <FlatList
+//         data={resultados}
+//         keyExtractor={item => String(item.id)}
+//         contentContainerStyle={{ alignItems: 'center', paddingTop: 20 }}
+//         renderItem={({ item }) => (
+//           <Text style={{ margin: 5 }}>{item.name}</Text>
+//         )}
+//       />
+//     </View>
+//   );
+// }
+
+// 10(Versão1)
+
+// import React, { useState, useEffect } from 'react';
+// import { View, Text, Button } from 'react-native';
+
+// export default function App() {
+//   const [valor, setValor] = useState(0);
+//   const [titulo, setTitulo] = useState('Valor: 0');
+
+//   useEffect(() => {
+//     console.log('Novo valor:', valor);
+//     setTitulo(`Valor: ${valor}`);
+//   }, [valor]);
+
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>{titulo}</Text>
+//       <Button title="+1" onPress={() => setValor(valor + 1)} />
+//     </View>
+//   );
+// }
+
+// 10(Versão2)
+
+// import React, { useState, useEffect } from 'react';
+// import { View, Text, Button } from 'react-native';
+
+// export default function App() {
+//   const [valor, setValor] = useState(0);
+//   const titulo = `Valor: ${valor}`;
+
+//   useEffect(() => {
+//     console.log('Novo valor:', valor);
+//   }, [valor]);
+
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>{titulo}</Text>
+//       <Button title="+1" onPress={() => setValor(valor + 1)} />
+//     </View>
+//   );
+// }
