@@ -1,0 +1,260 @@
+// 1
+
+// import React, { createContext, useContext, useState } from 'react';
+// import { View, Text, Button, StyleSheet } from 'react-native';
+
+// const TemaContext = createContext();
+
+// function TemaProvider({ children }) {
+//   const [escuro, setEscuro] = useState(false);
+
+//   return (
+//     <TemaContext.Provider value={{ escuro, setEscuro }}>
+//       {children}
+//     </TemaContext.Provider>
+//   );
+// }
+
+// function TelaInicial() {
+//   const { escuro, setEscuro } = useContext(TemaContext);
+
+//   return (
+//     <View
+//       style={[
+//         styles.container,
+//         { backgroundColor: escuro ? '#222' : '#fff' }
+//       ]}
+//     >
+//       <Text
+//         style={[
+//           styles.titulo,
+//           { color: escuro ? '#fff' : '#000' }
+//         ]}
+//       >
+//         Tema {escuro ? 'Escuro' : 'Claro'}
+//       </Text>
+
+//       <Button
+//         title="Trocar Tema"
+//         onPress={() => setEscuro(!escuro)}
+//       />
+//     </View>
+//   );
+// }
+
+// export default function App() {
+//   return (
+//     <TemaProvider>
+//       <TelaInicial />
+//     </TemaProvider>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     gap: 20,
+//   },
+//   titulo: {
+//     fontSize: 26,
+//     fontWeight: 'bold',
+//   },
+// });
+
+// 2
+
+// import React, { createContext, useContext, useState } from 'react';
+// import {
+//   View,
+//   Text,
+//   TextInput,
+//   Button,
+//   StyleSheet,
+//   Alert,
+// } from 'react-native';
+
+// const AuthContext = createContext();
+
+// function AuthProvider({ children }) {
+//   const [usuario, setUsuario] = useState(null);
+
+//   function login(email, senha) {
+//     if (senha === '123456' && email.trim() !== '') {
+//       setUsuario(email);
+//     } else {
+//       Alert.alert('Erro', 'E-mail ou senha incorretos');
+//     }
+//   }
+
+//   function logout() {
+//     setUsuario(null);
+//   }
+
+//   return (
+//     <AuthContext.Provider value={{ usuario, login, logout }}>
+//       {children}
+//     </AuthContext.Provider>
+//   );
+// }
+
+// function Tela() {
+//   const { usuario, login, logout } = useContext(AuthContext);
+//   const [email, setEmail] = useState('');
+//   const [senha, setSenha] = useState('');
+
+//   return (
+//     <View style={styles.container}>
+//       {usuario ? (
+//         <>
+//           <Text style={styles.titulo}>Bem-vindo!</Text>
+//           <Text style={styles.texto}>{usuario}</Text>
+//           <Button title="Sair" onPress={logout} />
+//         </>
+//       ) : (
+//         <>
+//           <Text style={styles.titulo}>Login</Text>
+
+//           <TextInput
+//             style={styles.input}
+//             placeholder="Digite seu e-mail"
+//             value={email}
+//             onChangeText={setEmail}
+//             autoCapitalize="none"
+//           />
+
+//           <TextInput
+//             style={styles.input}
+//             placeholder="Digite sua senha"
+//             value={senha}
+//             onChangeText={setSenha}
+//             secureTextEntry
+//           />
+
+//           <Button
+//             title="Entrar"
+//             onPress={() => login(email, senha)}
+//           />
+//         </>
+//       )}
+//     </View>
+//   );
+// }
+
+// export default function App() {
+//   return (
+//     <AuthProvider>
+//       <Tela />
+//     </AuthProvider>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     padding: 25,
+//     gap: 15,
+//   },
+//   titulo: {
+//     fontSize: 28,
+//     fontWeight: 'bold',
+//   },
+//   texto: {
+//     fontSize: 18,
+//   },
+//   input: {
+//     width: '100%',
+//     borderWidth: 1,
+//     borderColor: '#aaa',
+//     padding: 12,
+//     borderRadius: 8,
+//   },
+// });
+
+// 3
+
+// import React, { createContext, useContext, useState } from 'react';
+// import { View, Text, Button, StyleSheet } from 'react-native';
+
+// const CarrinhoContext = createContext();
+
+// function CarrinhoProvider({ children }) {
+//   const [quantidade, setQuantidade] = useState(0);
+
+//   function adicionar() {
+//     setQuantidade(valor => valor + 1);
+//   }
+
+//   function limpar() {
+//     setQuantidade(0);
+//   }
+
+//   return (
+//     <CarrinhoContext.Provider
+//       value={{ quantidade, adicionar, limpar }}
+//     >
+//       {children}
+//     </CarrinhoContext.Provider>
+//   );
+// }
+
+// function Loja() {
+//   const { quantidade, adicionar, limpar } =
+//     useContext(CarrinhoContext);
+
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.titulo}>Minha Loja</Text>
+
+//       <Text style={styles.produto}>Produto: Camiseta</Text>
+//       <Text style={styles.preco}>Preço: R$ 50,00</Text>
+
+//       <Button title="Adicionar ao Carrinho" onPress={adicionar} />
+
+//       <Text style={styles.texto}>
+//         Quantidade no carrinho: {quantidade}
+//       </Text>
+
+//       <Text style={styles.texto}>
+//         Total: R$ {quantidade * 50},00
+//       </Text>
+
+//       <Button title="Limpar Carrinho" onPress={limpar} />
+//     </View>
+//   );
+// }
+
+// export default function App() {
+//   return (
+//     <CarrinhoProvider>
+//       <Loja />
+//     </CarrinhoProvider>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     padding: 20,
+//     gap: 18,
+//   },
+//   titulo: {
+//     fontSize: 28,
+//     fontWeight: 'bold',
+//   },
+//   produto: {
+//     fontSize: 20,
+//   },
+//   preco: {
+//     fontSize: 18,
+//   },
+//   texto: {
+//     fontSize: 18,
+//   },
+// });
+
